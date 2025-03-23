@@ -7,7 +7,7 @@ import { MONGODB_URI } from "./config/envConfig";
 import authRouter from "./routes/authRoutes";
 import authenticateUser from "./middlewares/auth";
 import errorHandlerMiddleware from "./middlewares/error-handler";
-
+import chatRouter from "./routes/chatRoutes";
 const app = express();
 dotenv.config();
 
@@ -17,6 +17,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/chat", authenticateUser, chatRouter);
 
 app.use(errorHandlerMiddleware);
 

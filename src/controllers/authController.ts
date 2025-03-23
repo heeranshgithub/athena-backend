@@ -3,7 +3,7 @@ import { BadRequestError } from "../errors/index.js";
 import User from "../models/User.js";
 import { StatusCodes } from "http-status-codes";
 
-const register = async (req: Request, res: Response): Promise<void> => {
+export const register = async (req: Request, res: Response): Promise<void> => {
   const { name, email, password } = req.body;
 
   if (!name || !email || !password) {
@@ -23,14 +23,12 @@ const register = async (req: Request, res: Response): Promise<void> => {
   const token = user.createJWT();
 
   res.status(StatusCodes.CREATED).json({
-    user: {
-      name: user.name,
-      token,
-    },
+    name: user.name,
+    token,
   });
 };
 
-const login = async (req: Request, res: Response): Promise<void> => {
+export const login = async (req: Request, res: Response): Promise<void> => {
   const { email, password } = req.body;
   if (!email || !password) {
     throw new BadRequestError("Please provide all values!");
@@ -43,11 +41,7 @@ const login = async (req: Request, res: Response): Promise<void> => {
   user.password = undefined;
 
   res.status(StatusCodes.OK).json({
-    user: {
-      name: user.name,
-      token,
-    },
+    name: user.name,
+    token,
   });
 };
-
-export { register, login };
