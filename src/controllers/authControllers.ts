@@ -24,6 +24,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
   res.status(StatusCodes.CREATED).json({
     name: user.name,
+    email: user.email,
     token,
   });
 };
@@ -42,6 +43,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
   res.status(StatusCodes.OK).json({
     name: user.name,
+    email: user.email,
     token,
   });
 };
