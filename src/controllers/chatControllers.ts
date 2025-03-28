@@ -34,7 +34,7 @@ export const chatReply = async (req: Request, res: Response): Promise<void> => {
   const { message } = req.body;
 
   const jsonRequestMessage =
-    "Convert the above tasks into JSON. Array of objects. Each object with the following fields: id, title, isCompleted. isComplete set to false by default.";
+    "Convert the above tasks into JSON. Array of objects. Each object with the following fields: id, title, isCompleted. isComplete set to false by default. Just keep the title of the task in title (that is keep the title small), no description.";
 
   const updatedPrompt = `${message} ${jsonRequestMessage}`;
   try {
